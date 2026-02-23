@@ -1,0 +1,12 @@
+package: api_gen
+generate:
+  # use go's built in net/http library
+  std-http-server: true
+  # allows the api to serve its own spec, e.g. for a swagger-ui
+  embedded-spec: true
+  # generate handler interfaces that include types for request and response objects
+  strict-server: true
+  # generate types for components
+  models: true
+import-mapping:
+output: pkg/api_gen/api_gen.go

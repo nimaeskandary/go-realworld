@@ -1,0 +1,11 @@
+# https://vektra.github.io/mockery
+# run ./bin/generate-mocks.sh to regenerate mocks
+
+template: testify
+all: false
+recursive: true
+dir: "{{.InterfaceDir}}/mocks"
+pkgname: '{{.SrcPackageName}}_mocks'
+filename: '{{.SrcPackageName}}_mocks.go'
+packages:
+  github.com/nimaeskandary/go-realworld:
