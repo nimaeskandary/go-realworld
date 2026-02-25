@@ -116,7 +116,6 @@ func Test_UserServiceImpl(t *testing.T) {
 				f := setup(t)
 
 				upsertParams := params
-				upsertParams.Token = mo.None[string]()
 				upsertParams.Bio = mo.None[string]()
 				upsertParams.Image = mo.None[string]()
 
@@ -143,7 +142,6 @@ func Test_UserServiceImpl(t *testing.T) {
 				t.Parallel()
 				f := setup(t)
 				upsertParams := params
-				upsertParams.Token = mo.Some("test-token")
 				upsertParams.Bio = mo.Some("test bio")
 				upsertParams.Image = mo.Some("http://example.com/image.png")
 
@@ -256,7 +254,6 @@ func Test_UserServiceImpl(t *testing.T) {
 			t.Parallel()
 			f := setup(t)
 			upsertParams := params
-			upsertParams.Token = mo.None[string]()
 			upsertParams.Bio = mo.None[string]()
 			upsertParams.Image = mo.None[string]()
 
@@ -282,7 +279,6 @@ func Test_UserServiceImpl(t *testing.T) {
 			t.Parallel()
 			f := setup(t)
 			upsertParams := params
-			upsertParams.Token = mo.Some("updated-token")
 			upsertParams.Bio = mo.Some("updated bio")
 			upsertParams.Image = mo.Some("http://example.com/updated.png")
 

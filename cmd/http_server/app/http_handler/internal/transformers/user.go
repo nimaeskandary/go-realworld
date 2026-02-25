@@ -50,7 +50,6 @@ func FromApiNewUser(fromApi api_gen.NewUser) user_types.UpsertUserParams {
 	return user_types.UpsertUserParams{
 		Username: fromApi.Username,
 		Email:    fromApi.Email,
-		Token:    mo.None[string](),
 		Bio:      mo.None[string](),
 		Image:    mo.None[string](),
 	}

@@ -26,7 +26,6 @@ func main() {
 		Email:    "jdoe@example.com",
 		Bio:      mo.Some("I am John Doe"),
 		Image:    mo.Some("https://example.com/jdoe.jpg"),
-		Token:    mo.Some("token"),
 	})
 
 	if err != nil {

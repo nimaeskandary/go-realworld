@@ -21,7 +21,6 @@ type UserService interface {
 type UpsertUserParams struct {
 	Username string
 	Email    string
-	Token    mo.Option[string]
 	Bio      mo.Option[string]
 	Image    mo.Option[string]
 }
