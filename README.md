@@ -2,8 +2,8 @@
 
 * Golang implementation of the [realworld api spec](https://github.com/realworld-apps/realworld)
 * The project structure is inspired by [polylith](https://polylith.gitbook.io/polylith/)
-	* `pkgs/` contains [components](https://polylith.gitbook.io/polylith/architecture/2.3.-component)
-	* `cmds/` contains [bases](https://polylith.gitbook.io/polylith/architecture/2.2.-base)
+	* `pkg/` contains [components](https://polylith.gitbook.io/polylith/architecture/2.3.-component)
+	* `cmd/` contains [bases](https://polylith.gitbook.io/polylith/architecture/2.2.-base)
 	* `playground/` contains the [development project](https://polylith.gitbook.io/polylith/architecture/2.4.-development)
 
 ## Table of Contents
