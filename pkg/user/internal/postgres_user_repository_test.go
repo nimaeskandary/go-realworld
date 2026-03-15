@@ -197,10 +197,9 @@ func Test_PostgressUserRepository(t *testing.T) {
 	t.Run("IsFollowing", func(t *testing.T) {
 		t.Parallel()
 
-		users := helpers.CreateUsers(t, f.UserService, 2)
-
 		t.Run("should return false when not following", func(t *testing.T) {
 			t.Parallel()
+			users := helpers.CreateUsers(t, f.UserService, 2)
 
 			isFollowing, err := f.UserRepo.IsFollowing(t.Context(), users[0].Id, users[1].Id)
 			assert.NoError(t, err)
@@ -209,6 +208,7 @@ func Test_PostgressUserRepository(t *testing.T) {
 
 		t.Run("should return true when following", func(t *testing.T) {
 			t.Parallel()
+			users := helpers.CreateUsers(t, f.UserService, 2)
 
 			err := f.UserRepo.Follow(t.Context(), users[0].Id, users[1].Id)
 			assert.NoError(t, err)
@@ -222,10 +222,9 @@ func Test_PostgressUserRepository(t *testing.T) {
 	t.Run("Follow", func(t *testing.T) {
 		t.Parallel()
 
-		users := helpers.CreateUsers(t, f.UserService, 2)
-
 		t.Run("should be idempotent if already following", func(t *testing.T) {
 			t.Parallel()
+			users := helpers.CreateUsers(t, f.UserService, 2)
 
 			err := f.UserRepo.Follow(t.Context(), users[0].Id, users[1].Id)
 			assert.NoError(t, err)
@@ -242,10 +241,9 @@ func Test_PostgressUserRepository(t *testing.T) {
 	t.Run("Unfollow", func(t *testing.T) {
 		t.Parallel()
 
-		users := helpers.CreateUsers(t, f.UserService, 2)
-
 		t.Run("should unfollow successfully", func(t *testing.T) {
 			t.Parallel()
+			users := helpers.CreateUsers(t, f.UserService, 2)
 
 			err := f.UserRepo.Follow(t.Context(), users[0].Id, users[1].Id)
 			assert.NoError(t, err)
@@ -260,6 +258,7 @@ func Test_PostgressUserRepository(t *testing.T) {
 
 		t.Run("should be idempotent if already not followed", func(t *testing.T) {
 			t.Parallel()
+			users := helpers.CreateUsers(t, f.UserService, 2)
 
 			err := f.UserRepo.Unfollow(t.Context(), users[0].Id, users[1].Id)
 			assert.NoError(t, err)

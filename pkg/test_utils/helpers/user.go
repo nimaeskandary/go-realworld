@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"testing"
-	"time"
 
 	"github.com/google/uuid"
 	"github.com/nimaeskandary/go-realworld/pkg/user/types"
@@ -14,11 +13,11 @@ import (
 )
 
 func GenUser() user_types.User {
-	rand := time.Now().UnixNano()
+	id := uuid.New()
 	return user_types.User{
 		Id:              uuid.New(),
-		Username:        fmt.Sprintf("testuser-%v", rand),
-		Email:           fmt.Sprintf("testuser-%v@example.com", rand),
+		Username:        fmt.Sprintf("testuser-%v", id),
+		Email:           fmt.Sprintf("testuser-%v@example.com", id),
 		Bio:             mo.Some("I am a test user"),
 		Image:           mo.Some("https://example.com/testuser.jpg"),
 		CreatedAtMillis: now.UnixMilli(),
