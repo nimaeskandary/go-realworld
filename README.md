@@ -6,7 +6,7 @@
 	* `cmd/` contains [bases](https://polylith.gitbook.io/polylith/architecture/2.2.-base)
 	* `playground/` contains the [development project](https://polylith.gitbook.io/polylith/architecture/2.4.-development)
 
-## Table of Contents
+# Table of Contents
 
 1. [Stack](#stack)
 1. [Developer Guide](#developer-guide)
@@ -19,27 +19,27 @@
     1. [Playground](#playground)
     1. [Git hooks](#git-hooks)
 
-## Stack
+# Stack
 
 * [oapi-codegen](https://github.com/oapi-codegen/oapi-codegen/) - openapi spec to golang code generator
 * [fx](https://github.com/uber-go/fx) - dependency injection
 * [bob](https://github.com/stephenafamo/bob) - sql query builder
 * [goose](https://github.com/pressly/goose) - sql migrations
 
-## Developer Guide
+# Developer Guide
 
-### Dependencies
+## Dependencies
 
 * go 1.26.0 - https://go.dev/doc/install
 * docker - https://www.docker.com/products/docker-desktop/
 
-### Setting up dev environment
+## Setting up dev environment
 
 * run `bin/go-mod-tidy.sh` to download first time go deps
 * run `docker compose up -d` to start docker services in background
 * run database migrations, see [migrations](#database-migrations)
 
-### Running the http server
+## Running the http server
 
 * run `bin/run-local-server.sh`
 * this will start the API on `http://localhost:8080`
@@ -47,33 +47,33 @@
 
 > For auth, use the login or create user route, and grab the token from the response. Then you can click the Authorize button in the swagger ui to set the token `Token <from-response>` for future requests
 
-### Database migrations
+## Database migrations
 
 * for simplicity, to run all local migrations available, run `./bin/migrate-local.sh`
 * full migration runner instructions can be seen by running the command line tool `go run cmd/migrations/main.go`
 
 > View migration files at `pkg/database/migrations`
 
-### Openapi code generation
+## Openapi code generation
 
 * go code is generated from the open api spec `pkg/api_gen/api.yaml`
 * run `bin/oapi-codegen.sh`
 * the generated code is outputted to `pkg/api_gen`
 
-### Tests
+## Tests
 
 * run `go test ./...`
 
 > Go makes use of its build cache to skip running tests for packages that haven't had changes. You can force all tests with `go test -count=1 ./...` 
 
-#### Parallel tests
+### Parallel tests
 
 * Just about all sub tests in this project are written as parallel tests
 * To mark a test case as safe for parallelization, call `t.Parallel()` within the test case
 * Work was done to allow for parallization of integration tests that use the test postgres docker container
 	* tests use `pkg/test_utils/db_config_provider`, which is safe for concurrent use, and each caller gets an isolated version of each test database, with all migrations applied
 
-#### Mocks
+### Mocks
 
 * this project uses https://vektra.github.io/mockery
 * to mark an interface for mock generation, use the comment `//mockery:generate: true`
