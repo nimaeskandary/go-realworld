@@ -37,19 +37,19 @@ type StandardSystem struct {
 	UserService    user_types.UserService
 }
 
-func SetupStandardSystem(ctx context.Context) (StandardSystem, util.CleanupManager) {
+func SetupStandardSystem(ctx context.Context, cm util.CleanupManager) StandardSystem {
 	configData, err := os.ReadFile("config/local.yaml")
 	if err != nil {
 		log.Fatalf("failed to read config file %v", err)
 	}
 
-	f := StandardSystem{}
+	s := StandardSystem{}
 	app := util.CreateFxAppAndExtract(ModuleList(configData),
-		&f.ArticleRepo,
-		&f.ArticleService,
-		&f.AuthService,
-		&f.UserRepo,
-		&f.UserService,
+		&s.ArticleRepo,
+		&s.ArticleService,
+		&s.AuthService,
+		&s.UserRepo,
+		&s.UserService,
 	)
 
 	err = app.Start(ctx)
@@ -57,7 +57,6 @@ func SetupStandardSystem(ctx context.Context) (StandardSystem, util.CleanupManag
 		log.Fatalf("failed to start fx app: %v", err)
 	}
 
-	cm := util.NewCleanupManager(ctx, true)
 	cm.RegisterCleanupFunc(func() {
 		log.Printf("stopping fx app...")
 		err := app.Stop(ctx)
@@ -66,7 +65,7 @@ func SetupStandardSystem(ctx context.Context) (StandardSystem, util.CleanupManag
 		}
 	})
 
-	return f, cm
+	return s
 }
 
 func ModuleList(configData []byte) []fx.Option {

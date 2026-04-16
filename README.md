@@ -30,7 +30,7 @@
 
 ## Dependencies
 
-* go 1.26.0 - https://go.dev/doc/install
+* go 1.26.2 - https://go.dev/doc/install
 * docker - https://www.docker.com/products/docker-desktop/
 
 ## Setting up dev environment

@@ -1,6 +1,6 @@
 module github.com/nimaeskandary/go-realworld
 
-go 1.26.0
+go 1.26.2
 
 require (
 	github.com/getkin/kin-openapi v0.133.0

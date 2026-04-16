@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"github.com/nimaeskandary/go-realworld/pkg/user/types"
+	"github.com/nimaeskandary/go-realworld/pkg/util"
 	"github.com/nimaeskandary/go-realworld/playground"
 
 	"github.com/samber/mo"
@@ -12,7 +13,8 @@ import (
 
 func main() {
 	ctx := context.Background()
-	f, cm := playground.SetupStandardSystem(ctx)
+	cm := util.NewCleanupManager(ctx, true)
+	s := playground.SetupStandardSystem(ctx, cm)
 	defer func() {
 		e := recover()
 		if e != nil {
@@ -21,7 +23,7 @@ func main() {
 		cm.Cleanup()
 	}()
 
-	u, err := f.UserService.CreateUser(ctx, user_types.UpsertUserParams{
+	u, err := s.UserService.CreateUser(ctx, user_types.UpsertUserParams{
 		Username: "jdoe",
 		Email:    "jdoe@example.com",
 		Bio:      mo.Some("I am John Doe"),
