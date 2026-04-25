@@ -1,5 +1,9 @@
 # https://vektra.github.io/mockery
-# run ./bin/generate-mocks.sh to regenerate mocks
+# to mark an interface for mock generation, first use add comment `//mockery:generate: true` above the interface definition, e.g.
+# //mockery:generate: true
+# type SomeInterface interface { ... }
+# to generate mocks, run `bin/generate-mocks.sh`
+# mocks will be generated in a `mocks/` subfolder in the package of the interface, e.g. `pkg/user/types/mocks`
 
 template: testify
 all: false
