@@ -11,6 +11,7 @@ type ConfigLoader[T any] interface {
 // when it encounters a SecretString field in the config struct
 type SecretString string
 
+//mockery:generate: true
 type SecretParser interface {
 	Parse(raw string) (string, error)
 }
